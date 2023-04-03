@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Barcode Scanner</title>
+  </head>
+  <body>
+    <h1>Barcode Scanner</h1>
+    <form method="post" action="/">
+      <button type="submit">Screenshot</button>
+    </form>
+    <img src="data:image/jpeg;base64, {{ frame }}" alt="webcam frame">
+    {% if barcode %}
+      <p>Barcode: {{ barcode }}</p>
+      <p>Type: {{ barcode_type }}</p>
+    {% else %}
+      <p>No barcode detected</p>
+    {% endif %}
+
+    <form method="GET" action="https://world.openfoodfacts.org/product/{{barcode}}">
+      <button type="submit" class="btn btn-primary">Related Product</button>
+    </form>
+  </body>
+</html>
